@@ -1,0 +1,29 @@
+﻿2021/05/11 15:06:47 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\87kyu\OneDrive\デスクトップ\ゲームプログラムⅡ\課題8\GameProgramming\GameProgramming.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CRes.cpp CSceneGame.cpp
+         CSceneGame.cpp
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(106): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         CRes.cpp
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(39): error C2065: 'GL_VERTEX_ARRAY' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(39): error C3861: 'glEnableClientState': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(40): error C2065: 'GL_NORMAL_ARRAY' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(40): error C3861: 'glEnableClientState': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(43): error C2065: 'GL_FLOAT' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(43): error C3861: 'glVertexPointer': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(44): error C2065: 'GL_FLOAT' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(44): error C3861: 'glNormalPointer': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(47): error C2065: 'GL_TRIANGLES' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(48): error C2065: 'GL_UNSIGNED_INT' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(47): error C3861: 'glDrawElements': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(51): error C2065: 'GL_VERTEX_ARRAY' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(51): error C3861: 'glDisableClientState': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(52): error C2065: 'GL_NORMAL_ARRAY' : 定義されていない識別子です。
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(52): error C3861: 'glDisableClientState': 識別子が見つかりませんでした
+     1>c:\users\87kyu\onedrive\デスクトップ\ゲームプログラムⅱ\課題8\gameprogramming\cmodelx.h(106): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+         コードを生成中...
+     1>プロジェクト "C:\Users\87kyu\OneDrive\デスクトップ\ゲームプログラムⅡ\課題8\GameProgramming\GameProgramming.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
+
+ビルドに失敗しました。
+
+経過時間 00:00:01.44
