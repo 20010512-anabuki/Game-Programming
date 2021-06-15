@@ -35,7 +35,6 @@ public:
 
 	//デフォルトコンストラクタ
 	CMaterial();
-	, mpTextureFilename(nullptr)
 
 	//マテリアルを有効にする
 	void Enabled();

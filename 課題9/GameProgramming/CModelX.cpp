@@ -138,7 +138,26 @@ void CMesh::Init(CModelX*model){
 	}
 
 	model->GetToken();
-	if (strcmp(model->mToken, "MeshNormals") == 0){
+
+	 if (strcmp(model->mToken, "MeshMaterialList") == 0){
+		model->GetToken();//{
+		//マテリアルの数
+		mMaterialNum = model->GetIntToken();
+		mMaterialIndexNum = model->GetIntToken();
+		mpMaterialIndex = new int[mMaterialIndexNum];
+		for (int i = 0; i < mMaterialIndexNum; i++){
+			mpMaterialIndex[i] = model->GetIntToken();
+		}
+		//マテリアルデータの作成
+		for (int i = 0; i < mMaterialNum; i++){
+			model->GetToken();
+			if (strcmp(model->mToken, "Material") == 0){
+				mMaterial.push_back(new CMaterial(model));
+			}
+		}
+		model->GetToken();	//}//End of MeshMaterialList
+	}
+	else if (strcmp(model->mToken, "MeshNormals") == 0){
 		model->GetToken();//{
 		//法線データの取得
 		mNormalNum = model->GetIntToken();
@@ -167,20 +186,6 @@ void CMesh::Init(CModelX*model){
 		}
 		delete[]pNormal;
 		model->GetToken();//}
-	}
-	else if (strcmp(model->mToken, "MeshMaterialList") == 0){
-		model->GetToken();//{
-		//マテリアルの数
-		mMaterialNum = model->GetIntToken();
-		mMaterialIndexNum = model->GetIntToken();
-		mpMaterialIndex = new int[mMaterialIndexNum];
-		for (int i = 0; i < mMaterialNum; i++){
-			model->GetToken();
-			if (strcmp(model->mToken, "Material") == 0){
-				mMaterial.push_back(new CMaterial(model));
-			}
-		}
-		model->GetToken(); //}//End of MeshMaterialList
 	}
 }
 
@@ -220,8 +225,7 @@ void CMesh::Render(){
 	for (int i = 0; i < mFaceNum; i++){
 		//マテリアルの適用
 		mMaterial[mpMaterialIndex[i]]->Enabled();
-	
-	//図形の描画
+		//図形の描画
 		glDrawElements(GL_TRIANGLES, 3,
 			GL_UNSIGNED_INT, (mpVertexIndex + i * 3));
 	}
