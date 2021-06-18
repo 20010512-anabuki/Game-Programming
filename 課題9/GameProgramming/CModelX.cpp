@@ -109,83 +109,76 @@ float CModelX::GetFloatToken(){
 	return atof(mToken);
 }
 
-void CMesh::Init(CModelX*model){
-	while (model->mpPointer != '\0'){
-		model->GetToken();
-		//}
-		if (strchr(model->mToken, '}'))
-			break;
-		if (!strchr(model->mToken, '{')){
-			model->GetToken();//{
-		}
+void CMesh::Init(CModelX* model) {
+	model->GetToken();
+	if (!strchr(model->mToken, '{')) {
+		model->GetToken();//{
 	}
-
 	mVertexNum = model->GetIntToken();
 	mpVertex = new CVector[mVertexNum];
-	for (int i = 0; i < mVertexNum; i++){
+	for (int i = 0; i < mVertexNum; i++) {
 		mpVertex[i].mX = model->GetFloatToken();
 		mpVertex[i].mY = model->GetFloatToken();
 		mpVertex[i].mZ = model->GetFloatToken();
 	}
-
 	mFaceNum = model->GetIntToken(); //面数読み込み
 	mpVertexIndex = new int[mFaceNum * 3]; //頂点数は1つの面に3つ
-	for (int i = 0; i < mFaceNum * 3; i += 3){
+	for (int i = 0; i < mFaceNum * 3; i += 3) {
 		model->GetToken();
 		mpVertexIndex[i] = model->GetIntToken();
 		mpVertexIndex[i + 1] = model->GetIntToken();
 		mpVertexIndex[i + 2] = model->GetIntToken();
 	}
-
-	model->GetToken();
-
-	 if (strcmp(model->mToken, "MeshMaterialList") == 0){
-		model->GetToken();//{
-		//マテリアルの数
-		mMaterialNum = model->GetIntToken();
-		mMaterialIndexNum = model->GetIntToken();
-		mpMaterialIndex = new int[mMaterialIndexNum];
-		for (int i = 0; i < mMaterialIndexNum; i++){
-			mpMaterialIndex[i] = model->GetIntToken();
-		}
-		//マテリアルデータの作成
-		for (int i = 0; i < mMaterialNum; i++){
-			model->GetToken();
-			if (strcmp(model->mToken, "Material") == 0){
-				mMaterial.push_back(new CMaterial(model));
+	while (model->mpPointer != '\0') {
+		model->GetToken();
+		if (strchr(model->mToken, '}'))
+			break;
+		if (strcmp(model->mToken, "MeshNormals") == 0) {
+			model->GetToken();//{
+			//法線データの取得
+			mNormalNum = model->GetIntToken();
+			//法線データを配列へ
+			CVector* pNormal = new CVector[mNormalNum];
+			for (int i = 0; i < mNormalNum; i++) {
+				pNormal[i].mX = model->GetFloatToken();
+				pNormal[i].mY = model->GetFloatToken();
+				pNormal[i].mZ = model->GetFloatToken();
 			}
+			//法線数=面数*3
+			mNormalNum = model->GetIntToken() * 3;//FaceNum
+			int ni;
+			//頂点ごとに法線データを設定
+			mpNormal = new CVector[mNormalNum];
+			for (int i = 0; i < mNormalNum; i += 3) {
+				model->GetToken();//3
+				ni = model->GetIntToken();
+				mpNormal[i] = pNormal[ni];
+				ni = model->GetIntToken();
+				mpNormal[i + 1] = pNormal[ni];
+				ni = model->GetIntToken();
+				mpNormal[i + 2] = pNormal[ni];
+			}
+			delete[]pNormal;
+			model->GetToken();//}
 		}
-		model->GetToken();	//}//End of MeshMaterialList
-	}
-	else if (strcmp(model->mToken, "MeshNormals") == 0){
-		model->GetToken();//{
-		//法線データの取得
-		mNormalNum = model->GetIntToken();
-		//法線データを配列へ
-		CVector *pNormal = new CVector[mNormalNum];
-		for (int i = 0; i < mNormalNum; i++){
-			pNormal[i].mX = model->GetFloatToken();
-			pNormal[i].mY = model->GetFloatToken();
-			pNormal[i].mZ = model->GetFloatToken();
+		else if (strcmp(model->mToken, "MeshMaterialList") == 0) {
+			model->GetToken();//{
+			//マテリアルの数
+			mMaterialNum = model->GetIntToken();
+			mMaterialIndexNum = model->GetIntToken();
+			mpMaterialIndex = new int[mMaterialIndexNum];
+			for (int i = 0; i < mMaterialIndexNum; i++) {
+				mpMaterialIndex[i] = model->GetIntToken();
+			}
+			//マテリアルデータの作成
+			for (int i = 0; i < mMaterialNum; i++) {
+				model->GetToken();
+				if (strcmp(model->mToken, "Material") == 0) {
+					mMaterial.push_back(new CMaterial(model));
+				}
+			}
+			model->GetToken();	//}//End of MeshMaterialList
 		}
-		//法線数=面数*3
-		mNormalNum = model->GetIntToken() * 3;//FaceNum
-		int ni;
-		//頂点ごとに法線データを設定
-		mpNormal = new CVector[mNormalNum];
-		for (int i = 0; i < mNormalNum; i += 3){
-			model->GetToken();//3
-			ni = model->GetIntToken();
-			mpNormal[i] = pNormal[ni];
-
-			ni = model->GetIntToken();
-			mpNormal[i + 1] = pNormal[ni];
-
-			ni = model->GetIntToken();
-			mpNormal[i + 2] = pNormal[ni];
-		}
-		delete[]pNormal;
-		model->GetToken();//}
 	}
 }
 
