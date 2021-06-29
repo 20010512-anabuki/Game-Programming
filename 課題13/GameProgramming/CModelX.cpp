@@ -366,7 +366,7 @@ CAnimation::CAnimation(CModelX*model)
 				key[type] = new CMatrix[mKeyNum];
 				time[type] = new float[mKeyNum];
 				for (int i = 0; i < mKeyNum; i++){
-					key[type] = new CMatrix[mKeyNum];
+					
 					time[type][i] = model->GetFloatToken();
 					model->GetToken();//3
 					float x = model->GetFloatToken();

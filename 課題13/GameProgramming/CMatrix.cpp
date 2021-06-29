@@ -127,7 +127,7 @@ CMatrix CMatrix::SetQuaternion(float x, float y, float z, float w){
 		mM[1][1] = -x*x + y*y - z*z + w*w;
 		mM[1][2] = 2 * y*z - 2 * w*x;
 		mM[1][3] = 0;
-		mM[2][0] = 2 * x*z - 2 * w*z;
+		mM[2][0] = 2 * x*z - 2 * w*y;
 		mM[2][1] = 2 * y*z + 2 * w*x;
 		mM[2][2] = -x*x - y*y + z*z + w*w;
 		mM[2][3] = 0;
